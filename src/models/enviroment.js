@@ -1,6 +1,6 @@
 module.exports = {
     NODE_ENV: "develop",
-    // MODE_ENV: "production",
+    // NODE_ENV: "production",
     DEVELOPER: {
         URL_PATH: "http://localhost:",
         DB_PORT: '3443',

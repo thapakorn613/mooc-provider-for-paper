@@ -497,15 +497,16 @@ export default {
       this.$refs["delete-course-modal"].hide();
     },
     async onAddCourse() {
-      // get server list to optionsServer
       let dataForOptions = await ServerService.getOwnerServer(this.currentUser);
       this.optionsServer = dataForOptions;
       this.$refs["add-course-modal"].show();
     },
-    updateSelected(props) {
+    async updateSelected(props) {
       this.seletedDataForEdit = props.row;
       this.seletedDataForEdit.servername = props.row.server.name;
       this.seletedDataForEdit.serverlink = props.row.server.link;
+      let dataForOptions = await ServerService.getOwnerServer(this.currentUser);
+      this.optionsServer = dataForOptions;
       this.$refs["edit-course-modal"].show();
     },
     cancelAddCourse() {
@@ -517,6 +518,7 @@ export default {
     },
     async getCourseCompletion() {
       try {
+        
         let temp = await GetCourseCompletionService.getCourseCompletion(
           this.seletedDataForGetCourseCompletion._id,
           this.inputTCUUsername
